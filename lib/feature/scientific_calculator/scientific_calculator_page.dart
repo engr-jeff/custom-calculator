@@ -1,8 +1,8 @@
+import 'package:chemical_engineering_calculator/custom_calculator_app.dart';
 import 'package:flutter/material.dart';
 import 'package:math_parser/math_parser.dart';
 
 import 'package:chemical_engineering_calculator/feature/scientific_calculator/widgets/number_button_widget.dart';
-import 'package:chemical_engineering_calculator/main.dart';
 import 'package:chemical_engineering_calculator/utils/constants.dart';
 
 class ScientificCalculatorPage extends StatefulWidget {
@@ -85,12 +85,12 @@ class _ScientificCalculatorPageState extends State<ScientificCalculatorPage> {
     final thirdBasicFunctionsRow = TableRow(
       children: [
         CalculatorButton(
-          displayText: ' \u00d7 ',
+          displayText: '\u00d7',
           textCode: ' * ',
           onTap: buttonPressed,
         ),
         CalculatorButton(
-          displayText: ' ÷ ',
+          displayText: '÷',
           textCode: ' / ',
           onTap: buttonPressed,
         ),

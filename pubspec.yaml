@@ -15,16 +15,13 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-  share_plus: ^6.3.0
-  share_plus_web: ^3.1.0
   json_annotation: ^4.7.0
+
+  # Math Parser for calculations
   math_parser: ^1.5.0
 
   # Inset Box Shadow
   flutter_inset_box_shadow: ^1.0.8
-
-  # Tutorial Coach Mark
-  tutorial_coach_mark: ^1.2.4
 
 
 dev_dependencies:
