@@ -44,7 +44,7 @@ dart_code_metrics:
     - ban-name
     - binary-expression-operand-order
     - double-literal-format
-    - format-comment
+    # - format-comment
     - member-ordering
     - newline-before-return
     - no-boolean-literal-compare

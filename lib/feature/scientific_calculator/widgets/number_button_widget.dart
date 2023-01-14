@@ -1,5 +1,5 @@
 import 'package:chemical_engineering_calculator/custom_calculator_app.dart';
-import 'package:chemical_engineering_calculator/utils/constants.dart';
+import 'package:chemical_engineering_calculator/enums/digit.dart';
 import 'package:flutter/material.dart';
 
 class NumberButtonWidget extends StatelessWidget {
@@ -13,31 +13,29 @@ class NumberButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Table(
-      defaultVerticalAlignment: TableCellVerticalAlignment.middle,
       children: [
         FourthNumbersRow(onTap),
         ThirdNumbersRow(onTap),
         SecondNumbersRow(onTap),
         FirstNumbersRow(onTap),
       ],
+      defaultVerticalAlignment: TableCellVerticalAlignment.middle,
     );
   }
 
+  //TODO: use class widget
   TableRow FourthNumbersRow(void Function(String) onTap) => TableRow(
         children: [
           CalculatorButton(
-            textCode: '7',
-            displayText: Number.SEVEN.displayString,
+            displayText: Digit.SEVEN.displayString,
             onTap: onTap,
           ),
           CalculatorButton(
-            textCode: '8',
-            displayText: Number.EIGHT.displayString,
+            displayText: Digit.EIGHT.displayString,
             onTap: onTap,
           ),
           CalculatorButton(
-            textCode: '9',
-            displayText: Number.NINE.displayString,
+            displayText: Digit.NINE.displayString,
             onTap: onTap,
           ),
         ],
@@ -46,18 +44,15 @@ class NumberButtonWidget extends StatelessWidget {
   TableRow ThirdNumbersRow(void Function(String) onTap) => TableRow(
         children: [
           CalculatorButton(
-            textCode: '4',
-            displayText: Number.FOUR.displayString,
+            displayText: Digit.FOUR.displayString,
             onTap: onTap,
           ),
           CalculatorButton(
-            textCode: '5',
-            displayText: Number.FIVE.displayString,
+            displayText: Digit.FIVE.displayString,
             onTap: onTap,
           ),
           CalculatorButton(
-            textCode: '6',
-            displayText: Number.SIX.displayString,
+            displayText: Digit.SIX.displayString,
             onTap: onTap,
           ),
         ],
@@ -66,18 +61,15 @@ class NumberButtonWidget extends StatelessWidget {
   TableRow SecondNumbersRow(void Function(String) onTap) => TableRow(
         children: [
           CalculatorButton(
-            textCode: '1',
-            displayText: Number.ONE.displayString,
+            displayText: Digit.ONE.displayString,
             onTap: onTap,
           ),
           CalculatorButton(
-            textCode: '2',
-            displayText: Number.TWO.displayString,
+            displayText: Digit.TWO.displayString,
             onTap: onTap,
           ),
           CalculatorButton(
-            textCode: '3',
-            displayText: Number.THREE.displayString,
+            displayText: Digit.THREE.displayString,
             onTap: onTap,
           ),
         ],
@@ -86,17 +78,14 @@ class NumberButtonWidget extends StatelessWidget {
   TableRow FirstNumbersRow(void Function(String) onTap) => TableRow(
         children: [
           CalculatorButton(
-            textCode: '0',
-            displayText: Number.ZERO.displayString,
+            displayText: Digit.ZERO.displayString,
             onTap: onTap,
           ),
           CalculatorButton(
-            textCode: '.',
             displayText: '.',
             onTap: onTap,
           ),
           CalculatorButton(
-            textCode: 'x10^',
             displayText: 'x10^',
             onTap: onTap,
           ),

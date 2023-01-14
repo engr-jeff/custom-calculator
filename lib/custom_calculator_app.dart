@@ -8,7 +8,7 @@ class CustomCalculatorApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: const ScientificCalculatorPage(title: 'CHE CALCULATOR'),
+      home: const ScientificCalculatorPage(title: 'CUSTOM CALCULATOR'),
       theme: ThemeData(primarySwatch: Colors.blue),
       debugShowCheckedModeBanner: false,
     );
@@ -18,13 +18,13 @@ class CustomCalculatorApp extends StatelessWidget {
 class CalculatorButton extends StatefulWidget {
   const CalculatorButton({
     Key? key,
+    this.textCode,
     required this.displayText,
-    required this.textCode,
     required this.onTap,
   }) : super(key: key);
 
+  final String? textCode;
   final String displayText;
-  final String textCode;
   final void Function(String number) onTap;
 
   @override
@@ -42,44 +42,40 @@ class _CalculatorButtonState extends State<CalculatorButton> {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
       child: InkWell(
-        onTap: () => widget.onTap(widget.displayText),
-        borderRadius: BorderRadius.circular(10),
         child: Listener(
           onPointerDown: (_) => setState(() => isPressed = true),
           onPointerUp: (_) => setState(() => isPressed = false),
           child: AnimatedContainer(
-            duration: const Duration(milliseconds: 75),
-            curve: Curves.decelerate,
             alignment: Alignment.center,
-            height: 40,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
               color: const Color.fromARGB(255, 255, 120, 171),
+              borderRadius: BorderRadius.circular(15),
               boxShadow: [
                 BoxShadow(
-                  inset: isPressed,
                   color: const Color.fromARGB(255, 247, 131, 169),
                   offset: distance,
                   blurRadius: blur,
+                  inset: isPressed,
                 ),
                 BoxShadow(
-                  inset: isPressed,
                   color: const Color.fromARGB(255, 252, 100, 155),
                   offset: distance,
                   blurRadius: blur,
+                  inset: isPressed,
                 ),
               ],
             ),
+            height: 40,
             child: Text(
               widget.displayText,
-              style: TextStyle(
-                fontSize: 17.5,
-                color: Colors.black.withOpacity(0.8),
-                fontWeight: FontWeight.w800,
-              ),
+              style: TextStyle(color: Colors.black.withOpacity(0.8), fontSize: 17.5, fontWeight: FontWeight.w800),
             ),
+            curve: Curves.decelerate,
+            duration: const Duration(milliseconds: 75),
           ),
         ),
+        onTap: () => widget.onTap(widget.textCode ?? widget.displayText),
+        borderRadius: BorderRadius.circular(10),
       ),
     );
   }
