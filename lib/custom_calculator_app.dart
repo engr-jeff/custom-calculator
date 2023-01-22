@@ -48,17 +48,17 @@ class _CalculatorButtonState extends State<CalculatorButton> {
           child: AnimatedContainer(
             alignment: Alignment.center,
             decoration: BoxDecoration(
-              color: const Color.fromARGB(255, 255, 120, 171),
+              color: const Color(0xFFFF78AB),
               borderRadius: BorderRadius.circular(15),
               boxShadow: [
                 BoxShadow(
-                  color: const Color.fromARGB(255, 247, 131, 169),
+                  color: const Color(0xFFF783A9),
                   offset: distance,
                   blurRadius: blur,
                   inset: isPressed,
                 ),
                 BoxShadow(
-                  color: const Color.fromARGB(255, 252, 100, 155),
+                  color: const Color(0xFFFC649B),
                   offset: distance,
                   blurRadius: blur,
                   inset: isPressed,
@@ -68,7 +68,11 @@ class _CalculatorButtonState extends State<CalculatorButton> {
             height: 40,
             child: Text(
               widget.displayText,
-              style: TextStyle(color: Colors.black.withOpacity(0.8), fontSize: 17.5, fontWeight: FontWeight.w800),
+              style: TextStyle(
+                color: const Color(0xFF000000).withOpacity(0.8),
+                fontSize: 17.5,
+                fontWeight: FontWeight.w800,
+              ),
             ),
             curve: Curves.decelerate,
             duration: const Duration(milliseconds: 75),

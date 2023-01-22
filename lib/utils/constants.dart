@@ -1,5 +1,3 @@
-import 'package:flutter/foundation.dart';
-
 // Numbers
 // ignore_for_file: prefer-static-class
 const singleDigitsList = [
@@ -16,5 +14,4 @@ const singleDigitsList = [
 ];
 
 // Add, subtract, multiply, divide, and equal signs.
-const basicOperatorsList = [' + ', ' \u00d7 ', ' \u2212 ', ' ÷ ', '='];
-
+const basicOperatorsList = [' + ', '-', '*', ' ÷ ', '='];

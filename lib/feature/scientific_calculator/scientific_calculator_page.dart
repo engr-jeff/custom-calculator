@@ -83,10 +83,12 @@ class _ScientificCalculatorPageState extends State<ScientificCalculatorPage> {
     final thirdBasicFunctionsRow = TableRow(
       children: [
         CalculatorButton(
+          textCode: '*',
           displayText: '\u00d7',
           onTap: buttonPressed,
         ),
         CalculatorButton(
+          textCode: '/',
           displayText: '÷',
           onTap: buttonPressed,
         ),
@@ -126,110 +128,75 @@ class _ScientificCalculatorPageState extends State<ScientificCalculatorPage> {
         body: Column(children: [
           Container(
             padding: const EdgeInsets.only(top: 16),
-            // color: Color.fromARGB(255, 255, 148, 186),
             decoration: BoxDecoration(
-              color: Color.fromARGB(255, 138, 138, 138),
+              color: const Color(0xFF8A8A8A),
               borderRadius: BorderRadius.vertical(bottom: Radius.circular(4.0)),
             ),
             width: screenSize.width,
-
             height: 250,
-
-            child: Column(
-              children: [
-                Container(
-                  alignment: Alignment.centerRight,
-                  padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                  width: screenSize.width,
-                  child: Text(displayText, style: const TextStyle(fontSize: 28, fontWeight: FontWeight.w600)),
-                ),
-                const SizedBox(height: 20),
-                Container(
-                  alignment: Alignment.centerRight,
-                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                  width: screenSize.width,
-                  child: Text(resultText, style: const TextStyle(fontSize: 38, fontWeight: FontWeight.w600)),
-                ),
-              ],
-            ),
+            child: Column(children: [
+              Container(
+                alignment: Alignment.centerRight,
+                padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                width: screenSize.width,
+                child: Text(displayText, style: const TextStyle(fontSize: 28, fontWeight: FontWeight.w600)),
+              ),
+              const SizedBox(height: 20),
+              Container(
+                alignment: Alignment.centerRight,
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                width: screenSize.width,
+                child: Text(resultText, style: const TextStyle(fontSize: 38, fontWeight: FontWeight.w600)),
+              ),
+            ]),
           ),
           Expanded(
-            child: Row(
-              children: [
-                Container(
-                  color: const Color.fromARGB(255, 255, 129, 171),
-                  width: screenSize.width * 0.6,
-                  child: NumberButtonWidget(onTap: buttonPressed),
-                ),
-                Container(
-                  color: const Color.fromARGB(255, 255, 129, 171),
-                  width: screenSize.width * 0.4,
-                  child: Table(
-                    children: [
-                      fourthBasicFunctionsRow,
-                      thirdBasicFunctionsRow,
-                      SecondBasicFunctionsRow,
-                      FirstBasicFunctionsRow,
-                    ],
-                    defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-                  ),
-                ),
-              ],
-            ),
+            child: Row(children: [
+              Container(
+                color: const Color(0xFFFF81AB),
+                width: screenSize.width * 0.6,
+                child: NumberButtonWidget(onTap: buttonPressed),
+              ),
+            ]),
           ),
           Expanded(
-            child: Row(
-              children: [
-                Container(
-                  color: const Color.fromARGB(255, 255, 129, 171),
-                  width: screenSize.width * 0.6,
-                  child: NumberButtonWidget(onTap: buttonPressed),
+            child: Row(children: [
+              Container(
+                color: const Color(0xFFFF81AB),
+                width: screenSize.width * 0.6,
+                child: NumberButtonWidget(onTap: buttonPressed),
+              ),
+              Container(
+                color: const Color(0xFFFF81AB),
+                width: screenSize.width * 0.4,
+                child: Table(
+                  children: [
+                    fourthBasicFunctionsRow,
+                    thirdBasicFunctionsRow,
+                    SecondBasicFunctionsRow,
+                    FirstBasicFunctionsRow,
+                  ],
+                  defaultVerticalAlignment: TableCellVerticalAlignment.middle,
                 ),
-                Container(
-                  color: const Color.fromARGB(255, 255, 129, 171),
-                  width: screenSize.width * 0.4,
-                  child: Table(
-                    children: [
-                      fourthBasicFunctionsRow,
-                      thirdBasicFunctionsRow,
-                      SecondBasicFunctionsRow,
-                      FirstBasicFunctionsRow,
-                    ],
-                    defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ]),
           ),
         ]),
         bottomNavigationBar: BottomNavigationBar(
-          // fixedColor: Colors.red,
-          selectedItemColor: Colors.blue,
-          backgroundColor: Colors.red,
           items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Main Page',
-              // backgroundColor: Colors.orange,
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.calculate),
-              label: 'Calculator',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.dashboard_customize_rounded),
-              label: 'Customize',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.settings),
-              label: 'Settings',
-            ),
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Main Page'),
+            BottomNavigationBarItem(icon: Icon(Icons.calculate), label: 'Calculator'),
+            BottomNavigationBarItem(icon: Icon(Icons.dashboard_customize_rounded), label: 'Customize'),
+            BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Settings'),
           ],
           onTap: (index) => setState(() => _currentIndex = index),
           currentIndex: _currentIndex,
-          // type: BottomNavigationBarType.shifting,
+          type: BottomNavigationBarType.shifting,
+          backgroundColor: Colors.transparent,
+          selectedItemColor: Colors.blue,
+          unselectedItemColor: Colors.blueAccent,
         ),
-        backgroundColor: const Color.fromARGB(255, 255, 129, 171),
+        backgroundColor: const Color(0xFFFF81AB),
       ),
     );
   }

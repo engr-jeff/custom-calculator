@@ -86,6 +86,7 @@ class NumberButtonWidget extends StatelessWidget {
             onTap: onTap,
           ),
           CalculatorButton(
+            textCode: '* 10^',
             displayText: 'x10^',
             onTap: onTap,
           ),
