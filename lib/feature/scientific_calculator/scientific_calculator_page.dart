@@ -1,17 +1,12 @@
 import 'package:chemical_engineering_calculator/custom_calculator_app.dart';
+import 'package:chemical_engineering_calculator/feature/main_page/widgets/number_button_widget.dart';
+import 'package:chemical_engineering_calculator/utils/constants.dart';
+import 'package:chemical_engineering_calculator/utils/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:math_parser/math_parser.dart';
 
-import 'package:chemical_engineering_calculator/feature/scientific_calculator/widgets/number_button_widget.dart';
-import 'package:chemical_engineering_calculator/utils/constants.dart';
-
 class ScientificCalculatorPage extends StatefulWidget {
-  const ScientificCalculatorPage({
-    super.key,
-    required this.title,
-  });
-
-  final String title;
+  const ScientificCalculatorPage({super.key});
 
   @override
   State<ScientificCalculatorPage> createState() => _ScientificCalculatorPageState();
@@ -23,11 +18,23 @@ class _ScientificCalculatorPageState extends State<ScientificCalculatorPage> {
   String expressionText = '';
   int _currentIndex = 1;
 
+  //TODO: Implement this function in [CalculatorHandler] class
   buttonPressed(String character) {
     setState(() {
       if (character == '=') {
         displayText = resultText;
-      } else if (displayText == '0' && singleDigitsList.any((digit) => digit == character)) {
+      }
+
+      if (character == 'AC') {
+        displayText = '0';
+        resultText = '0';
+      }
+
+      if (displayText.isEmpty) {
+        displayText = '0';
+      }
+
+      if (displayText == '0' && singleDigitsList.any((digit) => digit == character)) {
         displayText = character;
       } else if (displayText != '0' && singleDigitsList.any((digit) => digit == character)) {
         displayText = displayText + character;
@@ -37,17 +44,8 @@ class _ScientificCalculatorPageState extends State<ScientificCalculatorPage> {
         displayText = displayText + character;
       }
 
-      if (character == 'AC') {
-        displayText = '0';
-        resultText = '0';
-      }
-
       if (character == 'DEL' && displayText != '0') {
         displayText = displayText.substring(0, displayText.length - 4);
-      }
-
-      if (displayText.isEmpty) {
-        displayText = '0';
       }
     });
 
@@ -123,18 +121,18 @@ class _ScientificCalculatorPageState extends State<ScientificCalculatorPage> {
       ],
     );
 
-    return SafeArea(
-      child: Scaffold(
-        body: Column(children: [
-          Container(
-            padding: const EdgeInsets.only(top: 16),
-            decoration: BoxDecoration(
-              color: const Color(0xFF8A8A8A),
-              borderRadius: BorderRadius.vertical(bottom: Radius.circular(4.0)),
-            ),
-            width: screenSize.width,
-            height: 250,
-            child: Column(children: [
+    return Column(
+      children: [
+        Container(
+          padding: const EdgeInsets.only(top: 16),
+          decoration: BoxDecoration(
+            color: PinkTheme.displayBackgroundColor,
+            borderRadius: BorderRadius.vertical(bottom: Radius.circular(4.0)),
+          ),
+          width: screenSize.width,
+          height: 250,
+          child: Column(
+            children: [
               Container(
                 alignment: Alignment.centerRight,
                 padding: const EdgeInsets.symmetric(horizontal: 12.0),
@@ -148,26 +146,30 @@ class _ScientificCalculatorPageState extends State<ScientificCalculatorPage> {
                 width: screenSize.width,
                 child: Text(resultText, style: const TextStyle(fontSize: 38, fontWeight: FontWeight.w600)),
               ),
-            ]),
+            ],
           ),
-          Expanded(
-            child: Row(children: [
+        ),
+        Expanded(
+          child: Row(
+            children: [
               Container(
-                color: const Color(0xFFFF81AB),
+                color: PinkTheme.buttonBackgroundColor,
                 width: screenSize.width * 0.6,
                 child: NumberButtonWidget(onTap: buttonPressed),
               ),
-            ]),
+            ],
           ),
-          Expanded(
-            child: Row(children: [
+        ),
+        Expanded(
+          child: Row(
+            children: [
               Container(
-                color: const Color(0xFFFF81AB),
+                color: PinkTheme.buttonBackgroundColor,
                 width: screenSize.width * 0.6,
                 child: NumberButtonWidget(onTap: buttonPressed),
               ),
               Container(
-                color: const Color(0xFFFF81AB),
+                color: PinkTheme.buttonBackgroundColor,
                 width: screenSize.width * 0.4,
                 child: Table(
                   children: [
@@ -179,25 +181,10 @@ class _ScientificCalculatorPageState extends State<ScientificCalculatorPage> {
                   defaultVerticalAlignment: TableCellVerticalAlignment.middle,
                 ),
               ),
-            ]),
+            ],
           ),
-        ]),
-        bottomNavigationBar: BottomNavigationBar(
-          items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Main Page'),
-            BottomNavigationBarItem(icon: Icon(Icons.calculate), label: 'Calculator'),
-            BottomNavigationBarItem(icon: Icon(Icons.dashboard_customize_rounded), label: 'Customize'),
-            BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Settings'),
-          ],
-          onTap: (index) => setState(() => _currentIndex = index),
-          currentIndex: _currentIndex,
-          type: BottomNavigationBarType.shifting,
-          backgroundColor: Colors.transparent,
-          selectedItemColor: Colors.blue,
-          unselectedItemColor: Colors.blueAccent,
         ),
-        backgroundColor: const Color(0xFFFF81AB),
-      ),
+      ],
     );
   }
 }

@@ -1,4 +1,5 @@
-import 'package:chemical_engineering_calculator/feature/scientific_calculator/scientific_calculator_page.dart';
+import 'package:chemical_engineering_calculator/feature/main_page/main_page.dart';
+import 'package:chemical_engineering_calculator/utils/theme.dart';
 import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
 import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
 
@@ -8,7 +9,7 @@ class CustomCalculatorApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: const ScientificCalculatorPage(title: 'CUSTOM CALCULATOR'),
+      home: const MainPage(title: 'CUSTOM CALCULATOR'),
       theme: ThemeData(primarySwatch: Colors.blue),
       debugShowCheckedModeBanner: false,
     );
@@ -36,7 +37,7 @@ class _CalculatorButtonState extends State<CalculatorButton> {
 
   @override
   Widget build(BuildContext context) {
-    Offset distance = isPressed ? const Offset(3, 3) : const Offset(0, 0);
+    Offset distance = isPressed ? const Offset(4, 4) : const Offset(0, 0);
     double blur = isPressed ? 10 : 2;
 
     return Padding(
@@ -48,7 +49,7 @@ class _CalculatorButtonState extends State<CalculatorButton> {
           child: AnimatedContainer(
             alignment: Alignment.center,
             decoration: BoxDecoration(
-              color: const Color(0xFFFF78AB),
+              color: PinkTheme.buttonColor,
               borderRadius: BorderRadius.circular(15),
               boxShadow: [
                 BoxShadow(
@@ -69,13 +70,21 @@ class _CalculatorButtonState extends State<CalculatorButton> {
             child: Text(
               widget.displayText,
               style: TextStyle(
-                color: const Color(0xFF000000).withOpacity(0.8),
-                fontSize: 17.5,
-                fontWeight: FontWeight.w800,
+                color: Color.fromARGB(255, 0, 0, 0),
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+                shadows: [
+                  Shadow(
+                    color: Colors.black54,
+                    offset: Offset(0, 0.25),
+                    blurRadius: 0.25,
+                  ),
+                ],
+                fontFamily: 'ShareTechMono',
               ),
             ),
             curve: Curves.decelerate,
-            duration: const Duration(milliseconds: 75),
+            duration: const Duration(milliseconds: 100),
           ),
         ),
         onTap: () => widget.onTap(widget.textCode ?? widget.displayText),
