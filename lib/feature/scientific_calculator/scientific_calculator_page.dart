@@ -1,9 +1,8 @@
+import 'package:chemical_engineering_calculator/classes/calculator_handler.dart';
 import 'package:chemical_engineering_calculator/custom_calculator_app.dart';
 import 'package:chemical_engineering_calculator/feature/main_page/widgets/number_button_widget.dart';
-import 'package:chemical_engineering_calculator/utils/constants.dart';
 import 'package:chemical_engineering_calculator/utils/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:math_parser/math_parser.dart';
 
 class ScientificCalculatorPage extends StatefulWidget {
   const ScientificCalculatorPage({super.key});
@@ -13,51 +12,20 @@ class ScientificCalculatorPage extends StatefulWidget {
 }
 
 class _ScientificCalculatorPageState extends State<ScientificCalculatorPage> {
-  String resultText = '0';
-  String displayText = '0';
-  String expressionText = '';
+  late CalculatorHandler calculator;
+  // String resultText = '0';
+  // String displayText = '0';
   int _currentIndex = 1;
 
-  //TODO: Implement this function in [CalculatorHandler] class
-  buttonPressed(String character) {
+  @override
+  void initState() {
+    super.initState();
+    calculator = CalculatorHandler();
+  }
+
+  void onTapButtons(String input) {
     setState(() {
-      if (character == '=') {
-        displayText = resultText;
-      }
-
-      if (character == 'AC') {
-        displayText = '0';
-        resultText = '0';
-      }
-
-      if (displayText.isEmpty) {
-        displayText = '0';
-      }
-
-      if (displayText == '0' && singleDigitsList.any((digit) => digit == character)) {
-        displayText = character;
-      } else if (displayText != '0' && singleDigitsList.any((digit) => digit == character)) {
-        displayText = displayText + character;
-      } else if (displayText != '0' &&
-          basicOperatorsList.any((operator) => operator != character) &&
-          !basicOperatorsList.any((operator) => displayText.endsWith(operator))) {
-        displayText = displayText + character;
-      }
-
-      if (character == 'DEL' && displayText != '0') {
-        displayText = displayText.substring(0, displayText.length - 4);
-      }
-    });
-
-    setState(() {
-      if (singleDigitsList.any((element) => element == character) ||
-          singleDigitsList.any((element) => displayText.endsWith(element)) ||
-          character == '=') {
-        final parsedExpr =
-            MathNodeExpression.fromString(displayText.substring(0, displayText.length).split(' ').join());
-        final value = parsedExpr.calc(MathVariableValues.none);
-        resultText = value.toString();
-      }
+      calculator.writeToDisplay(input);
     });
   }
 
@@ -69,11 +37,12 @@ class _ScientificCalculatorPageState extends State<ScientificCalculatorPage> {
       children: [
         CalculatorButton(
           displayText: 'DEL',
-          onTap: buttonPressed,
+          onTap: onTapButtons,
         ),
         CalculatorButton(
           displayText: 'AC',
-          onTap: buttonPressed,
+          textCode: 'AC',
+          onTap: onTapButtons,
         ),
       ],
     );
@@ -83,12 +52,12 @@ class _ScientificCalculatorPageState extends State<ScientificCalculatorPage> {
         CalculatorButton(
           textCode: '*',
           displayText: '\u00d7',
-          onTap: buttonPressed,
+          onTap: onTapButtons,
         ),
         CalculatorButton(
           textCode: '/',
           displayText: '÷',
-          onTap: buttonPressed,
+          onTap: onTapButtons,
         ),
       ],
     );
@@ -97,13 +66,13 @@ class _ScientificCalculatorPageState extends State<ScientificCalculatorPage> {
       children: [
         CalculatorButton(
           displayText: '+',
-          onTap: buttonPressed,
+          onTap: onTapButtons,
         ),
         // Minus sign (longer than default - string)
         CalculatorButton(
           textCode: '-',
           displayText: '\u2212',
-          onTap: buttonPressed,
+          onTap: onTapButtons,
         ),
       ],
     );
@@ -112,11 +81,11 @@ class _ScientificCalculatorPageState extends State<ScientificCalculatorPage> {
       children: [
         CalculatorButton(
           displayText: 'Ans',
-          onTap: buttonPressed,
+          onTap: onTapButtons,
         ),
         CalculatorButton(
           displayText: '=',
-          onTap: buttonPressed,
+          onTap: onTapButtons,
         ),
       ],
     );
@@ -137,14 +106,20 @@ class _ScientificCalculatorPageState extends State<ScientificCalculatorPage> {
                 alignment: Alignment.centerRight,
                 padding: const EdgeInsets.symmetric(horizontal: 12.0),
                 width: screenSize.width,
-                child: Text(displayText, style: const TextStyle(fontSize: 28, fontWeight: FontWeight.w600)),
+                child: Text(
+                  calculator.displayText,
+                  style: const TextStyle(fontSize: 28, fontWeight: FontWeight.w600),
+                ),
               ),
               const SizedBox(height: 20),
               Container(
                 alignment: Alignment.centerRight,
                 padding: const EdgeInsets.symmetric(horizontal: 10.0),
                 width: screenSize.width,
-                child: Text(resultText, style: const TextStyle(fontSize: 38, fontWeight: FontWeight.w600)),
+                child: Text(
+                  calculator.resultText,
+                  style: const TextStyle(fontSize: 38, fontWeight: FontWeight.w600),
+                ),
               ),
             ],
           ),
@@ -155,7 +130,7 @@ class _ScientificCalculatorPageState extends State<ScientificCalculatorPage> {
               Container(
                 color: PinkTheme.buttonBackgroundColor,
                 width: screenSize.width * 0.6,
-                child: NumberButtonWidget(onTap: buttonPressed),
+                child: NumberButtonWidget(onTap: onTapButtons),
               ),
             ],
           ),
@@ -166,7 +141,7 @@ class _ScientificCalculatorPageState extends State<ScientificCalculatorPage> {
               Container(
                 color: PinkTheme.buttonBackgroundColor,
                 width: screenSize.width * 0.6,
-                child: NumberButtonWidget(onTap: buttonPressed),
+                child: NumberButtonWidget(onTap: onTapButtons),
               ),
               Container(
                 color: PinkTheme.buttonBackgroundColor,

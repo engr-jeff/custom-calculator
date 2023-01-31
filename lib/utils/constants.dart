@@ -14,4 +14,4 @@ const singleDigitsList = [
 ];
 
 // Add, subtract, multiply, divide, and equal signs.
-const basicOperatorsList = [' + ', '-', '*', ' ÷ ', '='];
+const basicOperatorsList = [' + ', '-', '*', ' ÷ '];
