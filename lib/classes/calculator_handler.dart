@@ -1,3 +1,4 @@
+import 'package:chemical_engineering_calculator/extensions/string_ext.dart';
 import 'package:chemical_engineering_calculator/utils/constants.dart';
 import 'package:math_parser/math_parser.dart';
 
@@ -24,22 +25,33 @@ class CalculatorHandler {
     }
 
     if (input == 'AC') {
-      displayText = '0';
-      resultText = '0';
+      clearCalculator();
 
       return;
     }
 
     if (singleDigitsList.any((digit) => digit == input)) {
-      displayText = displayText == '0' ? input : displayText + input;
+      if (displayText != '0') return addToDisplayText(input);
+      displayText = input;
+
+      return;
+    }
+
+    if (input == '.' && singleDigitsList.any((element) => element == displayText.last)) {
+      addToDisplayText(input);
 
       return;
     }
 
     if (basicOperatorsList.any((op) => op == input) && !basicOperatorsList.any((op) => displayText.endsWith(op))) {
-      displayText = displayText + input;
+      addToDisplayText(input);
 
       return;
+    }
+
+    //TODO: Make ' *10^' a named constant
+    if (input == ' *10^' && !basicOperatorsList.any((op) => op == displayText.last)) {
+      addToDisplayText(input);
     }
 
     if (input == 'DEL' && displayText != '0') {
@@ -49,9 +61,7 @@ class CalculatorHandler {
         return;
       }
 
-      final length = displayText.length;
-      displayText = displayText.substring(0, length - 1);
-
+      displayText = displayText.removeLast();
       return;
     }
 
@@ -60,6 +70,10 @@ class CalculatorHandler {
 
       return;
     }
+  }
+
+  void addToDisplayText(String input) {
+    displayText = displayText + input;
   }
 
   void compute() {

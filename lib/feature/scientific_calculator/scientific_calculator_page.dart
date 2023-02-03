@@ -12,15 +12,12 @@ class ScientificCalculatorPage extends StatefulWidget {
 }
 
 class _ScientificCalculatorPageState extends State<ScientificCalculatorPage> {
-  late CalculatorHandler calculator;
-  // String resultText = '0';
-  // String displayText = '0';
+  final calculator = CalculatorHandler();
   int _currentIndex = 1;
 
   @override
   void initState() {
     super.initState();
-    calculator = CalculatorHandler();
   }
 
   void onTapButtons(String input) {
@@ -40,8 +37,8 @@ class _ScientificCalculatorPageState extends State<ScientificCalculatorPage> {
           onTap: onTapButtons,
         ),
         CalculatorButton(
-          displayText: 'AC',
           textCode: 'AC',
+          displayText: 'AC',
           onTap: onTapButtons,
         ),
       ],
