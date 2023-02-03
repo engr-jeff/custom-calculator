@@ -17,12 +17,14 @@ dependencies:
   cupertino_icons: ^1.0.2
   json_annotation: ^4.7.0
 
+  # DartX
+  dartx: ^1.1.0
+
   # Math Parser for calculations
   math_parser: ^1.5.0
 
   # Inset Box Shadow
   flutter_inset_box_shadow: ^1.0.8
-
 
 dev_dependencies:
   flutter_test:
