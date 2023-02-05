@@ -26,6 +26,9 @@ dependencies:
   # Inset Box Shadow
   flutter_inset_box_shadow: ^1.0.8
 
+  # Internationalization
+  intl: ^0.18.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
