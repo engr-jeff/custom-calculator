@@ -21,7 +21,7 @@ dependencies:
   dartx: ^1.1.0
 
   # Math Parser for calculations
-  math_parser: ^1.5.0
+  math_parser: ^1.5.1
 
   # Inset Box Shadow
   flutter_inset_box_shadow: ^1.0.8
