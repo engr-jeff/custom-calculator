@@ -28,6 +28,7 @@ dependencies:
 
   # Internationalization
   intl: ^0.18.0
+  flutter_svg: ^2.0.6
 
 dev_dependencies:
   flutter_test:
@@ -42,9 +43,17 @@ flutter:
 
   assets:
     - assets/
+    - assets/images/
+    - assets/fonts/
 
   fonts:
     - family: ShareTechMono
       fonts:
         - asset: assets/fonts/shareTechMono_regular.ttf
-
+    - family: Avara
+      fonts:
+        - asset: assets/fonts/AvaraBlack.otf
+        - asset: assets/fonts/AvaraBold.otf
+          weight: 700
+        - asset: assets/fonts/AvaraBoldItalic.otf
+          style: italic
