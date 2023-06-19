@@ -11,6 +11,6 @@
 	.st5{fill:none;stroke:#E0DDCF;stroke-width:2;stroke-miterlimit:10;}
 	.st6{fill:none;stroke:#F6511D;stroke-width:15;stroke-linecap:round;stroke-miterlimit:10;stroke-dasharray:30;}
 </style>
-<path class="st1" d="M53.93,68.86L3.31,40.16c-4.05-2.3-4.05-8.14,0-10.44l50.62-28.7c4-2.27,8.96,0.62,8.96,5.22l0,57.4
-	C62.89,68.24,57.93,71.13,53.93,68.86z"/>
+<path class="st1" d="M9.62,1.09l50.62,28.7c4.05,2.3,4.05,8.14,0,10.44L9.62,68.93c-4,2.27-8.96-0.62-8.96-5.22l0-57.4
+	C0.66,1.71,5.62-1.18,9.62,1.09z"/>
 </svg>
